@@ -1,12 +1,270 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <title>MYManager</title>
+    <style>
+        .form-container {
+            display: none;
+        }
+        .form-container.active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <h1>Gestionnaire des employés</h1>
+
+    <label for="form-selector">Sélectionner un formulaire :</label>
+    <select id="form-selector">
+        <option value="">Choisir un formulaire</option>
+        <option value="employee">Employé</option>
+        <option value="department">Département</option>
+        <option value="position">Poste</option>
+        <option value="salary">Salaire</option>
+        <option value="project">Projet</option>
+        <option value="employee-project">Affectation Employé-Projet</option>
+        <option value="attendance">Présence</option>
+    </select>
+
+    <div id="employee-form" class="form-container">
+        <h2>Ajouter un nouvel employé</h2>
+        <form class="data-form">
+            <label for="first-name">Prénom:</label>
+            <input type="text" id="first-name" name="first_name" required>
+            <br>
+            <label for="last-name">Nom:</label>
+            <input type="text" id="last-name" name="last_name" required>
+            <br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="phone-number">Numéro de téléphone:</label>
+            <input type="tel" id="phone-number" name="phone_number" required>
+            <br>
+            <label for="hire-date">Date d'embauche:</label>
+            <input type="date" id="hire-date" name="hire_date" required>
+            <br>
+            <label for="salary">Salaire:</label>
+            <input type="number" id="salary" name="salary" required>
+            <br>
+            <label for="department">Département:</label>
+            <select id="department" name="department_id" required>
+            </select>
+            <br>
+            <label for="position">Poste:</label>
+            <select id="position" name="position_id" required>
+            </select>
+            <br>
+            <button type="submit">Ajouter Employé</button>
+        </form>
+    </div>
+
+    <div id="department-form" class="form-container">
+        <h2>Ajouter un nouveau département</h2>
+        <form class="data-form">
+            <label for="department-name">Nom du département:</label>
+            <input type="text" id="department-name" name="department_name" required>
+            <br>
+            <label for="manager-id">ID du manager:</label>
+            <input type="number" id="manager-id" name="manager_id" required>
+            <br>
+            <button type="submit">Ajouter Département</button>
+        </form>
+    </div>
+
+    <div id="position-form" class="form-container">
+        <h2>Ajouter un nouveau poste</h2>
+        <form class="data-form">
+            <label for="position-name">Nom du poste:</label>
+            <input type="text" id="position-name" name="position_name" required>
+            <br>
+            <label for="salary-range">Fourchette de salaire:</label>
+            <input type="text" id="salary-range" name="salary_range" required>
+            <br>
+            <button type="submit">Ajouter Poste</button>
+        </form>
+    </div>
+
+    <div id="salary-form" class="form-container">
+        <h2>Ajouter un nouveau salaire</h2>
+        <form class="data-form">
+            <label for="salary-employee-id">ID de l'employé:</label>
+            <input type="number" id="salary-employee-id" name="employee_id" required>
+            <br>
+            <label for="salary-amount">Montant:</label>
+            <input type="number" id="salary-amount" name="amount" step="0.01" required>
+            <br>
+            <label for="effective-date">Date d'effet:</label>
+            <input type="date" id="effective-date" name="effective_date" required>
+            <br>
+            <button type="submit">Ajouter Salaire</button>
+        </form>
+    </div>
+
+    <div id="project-form" class="form-container">
+        <h2>Ajouter un nouveau projet</h2>
+        <form class="data-form">
+            <label for="project-name">Nom du projet:</label>
+            <input type="text" id="project-name" name="project_name" required>
+            <br>
+            <label for="start-date">Date de début:</label>
+            <input type="date" id="start-date" name="start_date" required>
+            <br>
+            <label for="end-date">Date de fin:</label>
+            <input type="date" id="end-date" name="end_date" required>
+            <br>
+            <label for="project-department">Département:</label>
+            <select id="project-department" name="department_id" required>
+            </select>
+            <br>
+            <button type="submit">Ajouter Projet</button>
+        </form>
+    </div>
+
+    <div id="employee-project-form" class="form-container">
+        <h2>Ajouter une affectation employé-projet</h2>
+        <form class="data-form">
+            <label for="ep-employee-id">ID de l'employé:</label>
+            <input type="number" id="ep-employee-id" name="employee_id" required>
+            <br>
+            <label for="ep-project-id">ID du projet:</label>
+            <input type="number" id="ep-project-id" name="project_id" required>
+            <br>
+            <label for="assignment-date">Date d'affectation:</label>
+            <input type="date" id="assignment-date" name="assignment_date" required>
+            <br>
+            <button type="submit">Ajouter Affectation</button>
+        </form>
+    </div>
+
+    <div id="attendance-form" class="form-container">
+        <h2>Ajouter une présence</h2>
+        <form class="data-form">
+            <label for="attendance-employee-id">ID de l'employé:</label>
+            <input type="number" id="attendance-employee-id" name="employee_id" required>
+            <br>
+            <label for="attendance-date">Date:</label>
+            <input type="date" id="attendance-date" name="date" required>
+            <br>
+            <label for="attendance-status">Statut:</label>
+            <select id="attendance-status" name="status" required>
+                <option value="present">Présent</option>
+                <option value="absent">Absent</option>
+                <option value="late">En retard</option>
+                <option value="on_leave">En congé</option>
+            </select>
+            <br>
+            <button type="submit">Ajouter Présence</button>
+        </form>
+    </div>
+
+    <h2>Tables de la base de données</h2>
+    <div id="tables-container"></div>
+
+    <script>
+        function loadDepartmentsAndPositions() {
+            fetch('/departments')
+                .then(response => response.json())
+                .then(data => {
+                    const departmentSelects = document.querySelectorAll('#department, #project-department');
+                    departmentSelects.forEach(select => {
+                        data.forEach(dept => {
+                            const option = document.createElement('option');
+                            option.value = dept.department_id;
+                            option.textContent = dept.department_name;
+                            select.appendChild(option);
+                        });
+                    });
+                });
+
+            fetch('/positions')
+                .then(response => response.json())
+                .then(data => {
+                    const positionSelect = document.getElementById('position');
+                    data.forEach(pos => {
+                        const option = document.createElement('option');
+                        option.value = pos.position_id;
+                        option.textContent = pos.position_name;
+                        positionSelect.appendChild(option);
+                    });
+                });
+        }
+
+        loadDepartmentsAndPositions();
+
+        fetch('/tables')
+            .then(response => response.json())
+            .then(data => {
+                const tablesContainer = document.getElementById('tables-container');
+                data.tables.forEach(tableData => {
+                    const tableTitle = document.createElement('h3');
+                    tableTitle.textContent = tableData.table;
+                    tablesContainer.appendChild(tableTitle);
+
+                    const tableElement = document.createElement('table');
+                    const thead = document.createElement('thead');
+                    const tbody = document.createElement('tbody');
+
+                    if (tableData.rows.length > 0) {
+                        const headers = Object.keys(tableData.rows[0]);
+                        const headerRow = document.createElement('tr');
+                        headers.forEach(header => {
+                            const th = document.createElement('th');
+                            th.textContent = header;
+                            headerRow.appendChild(th);
+                        });
+                        thead.appendChild(headerRow);
+                    }
+
+                    tableData.rows.forEach(row => {
+                        const rowElement = document.createElement('tr');
+                        Object.values(row).forEach(value => {
+                            const td = document.createElement('td');
+                            td.textContent = value;
+                            rowElement.appendChild(td);
+                        });
+                        tbody.appendChild(rowElement);
+                    });
+
+                    tableElement.appendChild(thead);
+                    tableElement.appendChild(tbody);
+                    tablesContainer.appendChild(tableElement);
+                });
+            })
+            .catch(error => console.error('Error fetching tables:', error));
+
+        document.querySelectorAll('.data-form').forEach(form => {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData.entries());
+                const endpoint = '/' + this.closest('.form-container').id.replace('-form', '');
+                fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Data added:', result);
+                    location.reload();
+                })
+                .catch(error => console.error('Error adding data:', error));
+            });
+        });
+
+        document.getElementById('form-selector').addEventListener('change', function() {
+            document.querySelectorAll('.form-container').forEach(container => {
+                container.classList.remove('active');
+            });
+            const selectedForm = document.getElementById(this.value + '-form');
+            if (selectedForm) {
+                selectedForm.classList.add('active');
+            }
+        });
+    </script>
 </body>
 </html>
