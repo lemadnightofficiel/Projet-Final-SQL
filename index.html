@@ -3,10 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <title>MYManager</title>
 </head>
 <body>
     <h1>Gestionnaire des employés</h1>
+    <h2>Tables de la base de données</h2>
+    <div id="tables-container"></div>
+
+    <script>
+        fetch('/tables')
+            .then(response => response.json())
+            .then(data => {
+                const tablesContainer = document.getElementById('tables-container');
+                data.tables.forEach(tableData => {
+                    const tableTitle = document.createElement('h3');
+                    tableTitle.textContent = tableData.table;
+                    tablesContainer.appendChild(tableTitle);
+
+                    const tableElement = document.createElement('table');
+                    const thead = document.createElement('thead');
+                    const tbody = document.createElement('tbody');
+
+                    if (tableData.rows.length > 0) {
+                        const headers = Object.keys(tableData.rows[0]);
+                        const headerRow = document.createElement('tr');
+                        headers.forEach(header => {
+                            const th = document.createElement('th');
+                            th.textContent = header;
+                            headerRow.appendChild(th);
+                        });
+                        thead.appendChild(headerRow);
+                    }
+
+                    tableData.rows.forEach(row => {
+                        const rowElement = document.createElement('tr');
+                        Object.values(row).forEach(value => {
+                            const td = document.createElement('td');
+                            td.textContent = value;
+                            rowElement.appendChild(td);
+                        });
+                        tbody.appendChild(rowElement);
+                    });
+
+                    tableElement.appendChild(thead);
+                    tableElement.appendChild(tbody);
+                    tablesContainer.appendChild(tableElement);
+                });
+            })
+            .catch(error => console.error('Error fetching tables:', error));
+    </script>
 </body>
 </html>
