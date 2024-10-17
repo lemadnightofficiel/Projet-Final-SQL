@@ -1,22 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
 h1 {
     color: blueviolet;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #444;
+    border-bottom: 2px solid blueviolet;
+    padding-bottom: 10px;
+    margin-top: 30px;
+}
+
+select, input, button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: blueviolet;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #8a2be2;
+}
+
+.form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 th, td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px;
     text-align: left;
 }
 
 th {
     background-color: #f2f2f2;
     color: black;
+    font-weight: bold;
 }
 
 tr:nth-child(even) {
@@ -31,6 +82,18 @@ table, th, td {
     border-radius: 8px;
 }
 
-table {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+#form-selector {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.form-container h2 {
+    margin-top: 0;
+    color: blueviolet;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
 }
