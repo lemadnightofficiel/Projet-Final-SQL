@@ -153,6 +153,19 @@ createDatabase()
           });
     });
 
+    app.delete('/delete/:table/:id', (req, res) => {
+      const { table, id } = req.params;
+      const idColumn = `${table.slice(0, -1)}_id`;
+    
+      db.run(`DELETE FROM ${table} WHERE ${idColumn} = ?`, [id], function(err) {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        res.json({ success: true });
+      });
+    });
+
     app.listen(PORT, () => {
       console.log(`Serveur en cours d'exécution sur http://localhost:${PORT}`);
     });
