@@ -20,7 +20,7 @@ MYManager est une application web conçue pour gérer les employés, les départ
   - JavaScript
 
 - **Backend** :
-  - Node.js avec Express.js pour le serveur web.
+  - Node JS avec Express JS pour le serveur web.
   - SQLite comme base de données.
 
 ## Comment Lancer le Programme
