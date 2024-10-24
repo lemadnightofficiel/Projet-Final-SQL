@@ -16,12 +16,14 @@ const loadDepartmentsAndPositions = () => {
     fetch('/positions')
         .then(response => response.json())
         .then(data => {
-            const positionSelect = document.getElementById('position');
-            data.forEach(pos => {
-                const option = document.createElement('option');
-                option.value = pos.position_id;
-                option.textContent = pos.position_name;
-                positionSelect.appendChild(option);
+            const positionSelects = document.querySelectorAll('#position');
+            positionSelects.forEach(select => {
+                data.forEach(pos => {
+                    const option = document.createElement('option');
+                    option.value = pos.position_id;
+                    option.textContent = pos.position_name;
+                    select.appendChild(option);
+                });
             });
         });
 };
