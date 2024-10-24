@@ -13,6 +13,10 @@ MYManager est une application web conçue pour gérer les employés, les départ
 - **Suivi des Présences** : Enregistrer la présence des employés avec différents statuts (présent, absent, en retard, en congé).
 - **Interface Interactive** : Utilisation de formulaires HTML pour l'entrée de données et JavaScript pour l'interactivité.
 
+## Explications du site
+
+- Nous avons une page pour chaque formulaire, il y a juste à choisir le formulaire et cella nous redirige sur celui correspondants. Et une fois de ssus ont peut rajouter des élements dans la BDD et ainsi qu'en suprimer.
+
 ## Technologies Utilisées
 
 - **Frontend** :
