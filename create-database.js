@@ -10,9 +10,9 @@ function createDatabase() {
         manager_id INTEGER
       )`);
 
-      db.run(`CREATE TABLE IF NOT EXISTS Positions (
-        position_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        position_name TEXT NOT NULL,
+      db.run(`CREATE TABLE IF NOT EXISTS Posts (
+        post_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        post_name TEXT NOT NULL,
         salary_range TEXT NOT NULL
       )`);
 
@@ -85,7 +85,7 @@ function initializeDatabase() {
         ('Sécurité', 9),
         ('Qualité', 10)`);
 
-      db.run(`INSERT INTO Positions (position_name, salary_range) VALUES 
+      db.run(`INSERT INTO Posts (post_name, salary_range) VALUES 
         ('Développeur Full Stack', '40000-60000'),
         ('Designer UI/UX', '35000-55000'),
         ('Chef de Projet', '50000-70000'),

@@ -61,6 +61,160 @@ createDatabase()
       });
     });
 
+    app.get('/employees/department/:department_id', (req, res) => {
+      const { department_id } = req.params;
+      db.all(`SELECT * FROM Employees WHERE department_id = ?`, [department_id], (err, rows) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        res.json(rows);
+      });
+    });
+
+    app.get('/employees/position/:position_id', (req, res) => {
+      const { position_id } = req.params;
+      db.all(`SELECT * FROM Employees WHERE position_id = ?`, [position_id], (err, rows) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        res.json(rows);
+      });
+    });
+
+    app.get('/departments/name/:name', (req, res) => {
+      const { name } = req.params;
+      db.all(`SELECT * FROM Departments WHERE department_name LIKE ?`, [`%${name}%`], (err, rows) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        res.json(rows);
+      });
+    });
+
+    app.get('/departments/manager/:manager_id', (req, res) => {
+      const { manager_id } = req.params;
+      db.all(`SELECT * FROM Departments WHERE manager_id = ?`, [manager_id], (err, rows) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        res.json(rows);
+      });
+    });
+
+    app.get('/positions/name/:name', (req, res) => {
+      const { name } = req.params;
+      db.all(`SELECT * FROM Positions WHERE position_name LIKE ?`, [`%${name}%`], (err, rows) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        res.json(rows);
+      });
+    });
+
+    app.get('/positions/salary_range/:range', (req, res) => {
+      const { range } = req.params;
+      db.all(`SELECT * FROM Positions WHERE salary_range = ?`, [range], (err, rows) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        res.json(rows);
+      });
+    });
+
+    app.get('/salaries/amount/:min/:max', (req, res) => {
+      const { min, max } = req.params;
+      db.all(`SELECT * FROM Salaries WHERE amount BETWEEN ? AND ?`, [min, max], (err, rows) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        res.json(rows);
+      });
+    });
+
+    app.get('/salaries/date/:date', (req, res) => {
+      const { date } = req.params;
+      db.all(`SELECT * FROM Salaries WHERE effective_date = ?`, [date], (err, rows) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        res.json(rows);
+      });
+    });
+
+    app.get('/projects/department/:department_id', (req, res) => {
+      const { department_id } = req.params;
+      db.all(`SELECT * FROM Projects WHERE department_id = ?`, [department_id], (err, rows) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        res.json(rows);
+      });
+    });
+
+    app.get('/projects/start_date/:start_date', (req, res) => {
+      const { start_date } = req.params;
+      db.all(`SELECT * FROM Projects WHERE start_date = ?`, [start_date], (err, rows) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        res.json(rows);
+      });
+    });
+
+    app.get('/employee-projects/employee/:employee_id', (req, res) => {
+      const { employee_id } = req.params;
+      db.all(`SELECT * FROM Employee_Projects WHERE employee_id = ?`, [employee_id], (err, rows) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        res.json(rows);
+      });
+    });
+
+    app.get('/employee-projects/project/:project_id', (req, res) => {
+      const { project_id } = req.params;
+      db.all(`SELECT * FROM Employee_Projects WHERE project_id = ?`, [project_id], (err, rows) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        res.json(rows);
+      });
+    });
+
+    app.get('/attendance/status/:status', (req, res) => {
+      const { status } = req.params;
+      db.all(`SELECT * FROM Attendance WHERE status = ?`, [status], (err, rows) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        res.json(rows);
+      });
+    });
+
+    app.get('/attendance/date/:date', (req, res) => {
+      const { date } = req.params;
+      db.all(`SELECT * FROM Attendance WHERE date = ?`, [date], (err, rows) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        res.json(rows);
+      });
+    });
+
     app.post('/employee', (req, res) => {
       const { first_name, last_name, email, phone_number, hire_date, salary, department_id, position_id } = req.body;
       db.run(`INSERT INTO Employees (first_name, last_name, email, phone_number, hire_date, salary, department_id, position_id) 
@@ -155,9 +309,26 @@ createDatabase()
 
     app.delete('/delete/:table/:id', (req, res) => {
       const { table, id } = req.params;
-      const idColumn = `${table.slice(0, -1)}_id`;
+      let query = '';
+      let params = [];
     
-      db.run(`DELETE FROM ${table} WHERE ${idColumn} = ?`, [id], function(err) {
+      if (table === 'employee-project') {
+        const [employeeId, projectId] = id.split('-');
+        query = `DELETE FROM Employee_Projects WHERE employee_id = ? AND project_id = ?`;
+        params = [employeeId, projectId];
+      } else if (table === 'attendance') {
+        query = `DELETE FROM Attendance WHERE attendance_id = ?`;
+        params = [id];
+      } else if (table === 'salaries') {
+        query = `DELETE FROM Salaries WHERE salary_id = ?`;
+        params = [id];
+      } else {
+        const idColumn = `${table.slice(0, -1)}_id`;
+        query = `DELETE FROM ${table} WHERE ${idColumn} = ?`;
+        params = [id];
+      }
+    
+      db.run(query, params, function(err) {
         if (err) {
           res.status(500).json({ error: err.message });
           return;
@@ -165,7 +336,7 @@ createDatabase()
         res.json({ success: true });
       });
     });
-
+    
     app.listen(PORT, () => {
       console.log(`Serveur en cours d'exécution sur http://localhost:${PORT}`);
     });
