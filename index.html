@@ -68,6 +68,23 @@
             <br>
             <button type="submit">Ajouter Employé</button>
         </form>
+
+        <h2>Filtrer les employés</h2>
+        <div id="filter-container">
+            <form id="filter-department-form">
+                <label for="filter-department">Filtrer par département:</label>
+                <select id="filter-department" name="department_id">
+                </select>
+                <button type="submit">Filtrer</button>
+            </form>
+
+            <form id="filter-position-form">
+                <label for="filter-position">Filtrer par poste:</label>
+                <select id="filter-position" name="position_id">
+                </select>
+                <button type="submit">Filtrer</button>
+            </form>
+        </div>
     </div>
 
     <div id="department-form" class="form-container">
@@ -81,6 +98,21 @@
             <br>
             <button type="submit">Ajouter Département</button>
         </form>
+
+        <h2>Filtrer les départements</h2>
+        <div id="filter-container">
+            <form id="filter-department-name-form">
+                <label for="filter-department-name">Filtrer par nom:</label>
+                <input type="text" id="filter-department-name" name="department_name" required>
+                <button type="submit">Filtrer</button>
+            </form>
+
+            <form id="filter-manager-id-form">
+                <label for="filter-manager-id">Filtrer par ID du manager:</label>
+                <input type="number" id="filter-manager-id" name="manager_id" required>
+                <button type="submit">Filtrer</button>
+            </form>
+        </div>
     </div>
 
     <div id="position-form" class="form-container">
@@ -94,6 +126,21 @@
             <br>
             <button type="submit">Ajouter Poste</button>
         </form>
+
+        <h2>Filtrer les postes</h2>
+        <div id="filter-container">
+            <form id="filter-position-name-form">
+                <label for="filter-position-name">Filtrer par nom:</label>
+                <input type="text" id="filter-position-name" name="position_name" required>
+                <button type="submit">Filtrer</button>
+            </form>
+
+            <form id="filter-salary-range-form">
+                <label for="filter-salary-range">Filtrer par fourchette de salaire:</label>
+                <input type="text" id="filter-salary-range" name="salary_range" required>
+                <button type="submit">Filtrer</button>
+            </form>
+        </div>
     </div>
 
     <div id="salary-form" class="form-container">
@@ -110,6 +157,24 @@
             <br>
             <button type="submit">Ajouter Salaire</button>
         </form>
+
+        <h2>Filtrer les salaires</h2>
+        <div id="filter-container">
+            <form id="filter-salary-amount-form">
+                <label for="filter-salary-amount-min">Montant minimum:</label>
+                <input type="number" id="filter-salary-amount-min" name="min" required>
+                <br>
+                <label for="filter-salary-amount-max">Montant maximum:</label>
+                <input type="number" id="filter-salary-amount-max" name="max" required>
+                <button type="submit">Filtrer</button>
+            </form>
+
+            <form id="filter-salary-date-form">
+                <label for="filter-salary-date">Filtrer par date d'effet:</label>
+                <input type="date" id="filter-salary-date" name="effective_date" required>
+                <button type="submit">Filtrer</button>
+            </form>
+        </div>
     </div>
 
     <div id="project-form" class="form-container">
@@ -130,6 +195,22 @@
             <br>
             <button type="submit">Ajouter Projet</button>
         </form>
+
+        <h2>Filtrer les projets</h2>
+        <div id="filter-container">
+            <form id="filter-project-department-form">
+                <label for="filter-project-department">Filtrer par département:</label>
+                <select id="filter-project-department" name="department_id">
+                </select>
+                <button type="submit">Filtrer</button>
+            </form>
+
+            <form id="filter-project-start-date-form">
+                <label for="filter-project-start-date">Filtrer par date de début:</label>
+                <input type="date" id="filter-project-start-date" name="start_date" required>
+                <button type="submit">Filtrer</button>
+            </form>
+        </div>
     </div>
 
     <div id="employee-project-form" class="form-container">
@@ -146,6 +227,21 @@
             <br>
             <button type="submit">Ajouter Affectation</button>
         </form>
+
+        <h2>Filtrer les affectations</h2>
+        <div id="filter-container">
+            <form id="filter-employee-project-employee-form">
+                <label for="filter-employee-project-employee">Filtrer par ID de l'employé:</label>
+                <input type="number" id="filter-employee-project-employee" name="employee_id" required>
+                <button type="submit">Filtrer</button>
+            </form>
+
+            <form id="filter-employee-project-project-form">
+                <label for="filter-employee-project-project">Filtrer par ID du projet:</label>
+                <input type="number" id="filter-employee-project-project" name="project_id" required>
+                <button type="submit">Filtrer</button>
+            </form>
+        </div>
     </div>
 
     <div id="attendance-form" class="form-container">
@@ -167,6 +263,26 @@
             <br>
             <button type="submit">Ajouter Présence</button>
         </form>
+
+        <h2>Filtrer les présences</h2>
+        <div id="filter-container">
+            <form id="filter-attendance-status-form">
+                <label for="filter-attendance-status">Filtrer par statut:</label>
+                <select id="filter-attendance-status" name="status">
+                    <option value="present">Présent</option>
+                    <option value="absent">Absent</option>
+                    <option value="late">En retard</option>
+                    <option value="on_leave">En congé</option>
+                </select>
+                <button type="submit">Filtrer</button>
+            </form>
+
+            <form id="filter-attendance-date-form">
+                <label for="filter-attendance-date">Filtrer par date:</label>
+                <input type="date" id="filter-attendance-date" name="date" required>
+                <button type="submit">Filtrer</button>
+            </form>
+        </div>
     </div>
 
     <h2>Tables de la base de données</h2>
@@ -177,7 +293,7 @@
             fetch('/departments')
                 .then(response => response.json())
                 .then(data => {
-                    const departmentSelects = document.querySelectorAll('#department, #project-department');
+                    const departmentSelects = document.querySelectorAll('#department, #project-department, #filter-department, #filter-project-department');
                     departmentSelects.forEach(select => {
                         data.forEach(dept => {
                             const option = document.createElement('option');
@@ -191,12 +307,14 @@
             fetch('/positions')
                 .then(response => response.json())
                 .then(data => {
-                    const positionSelect = document.getElementById('position');
-                    data.forEach(pos => {
-                        const option = document.createElement('option');
-                        option.value = pos.position_id;
-                        option.textContent = pos.position_name;
-                        positionSelect.appendChild(option);
+                    const positionSelects = document.querySelectorAll('#position, #filter-position');
+                    positionSelects.forEach(select => {
+                        data.forEach(pos => {
+                            const option = document.createElement('option');
+                            option.value = pos.position_id;
+                            option.textContent = pos.position_name;
+                            select.appendChild(option);
+                        });
                     });
                 });
         }
@@ -298,6 +416,155 @@
                 selectedForm.classList.add('active');
             }
         });
+
+        document.getElementById('filter-department-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const departmentId = document.getElementById('filter-department').value;
+            fetch(`/employees/department/${departmentId}`)
+                .then(response => response.json())
+                .then(data => displayFilteredEmployees(data))
+                .catch(error => console.error('Error fetching filtered employees:', error));
+        });
+
+        document.getElementById('filter-position-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const positionId = document.getElementById('filter-position').value;
+            fetch(`/employees/position/${positionId}`)
+                .then(response => response.json())
+                .then(data => displayFilteredEmployees(data))
+                .catch(error => console.error('Error fetching filtered employees:', error));
+        });
+
+        document.getElementById('filter-salary-amount-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const minSalary = document.getElementById('filter-salary-amount-min').value;
+            const maxSalary = document.getElementById('filter-salary-amount-max').value;
+            fetch(`/salaries/amount/${minSalary}/${maxSalary}`)
+                .then(response => response.json())
+                .then(data => displayFilteredSalaries(data))
+                .catch(error => console.error('Error fetching filtered salaries:', error));
+        });
+
+        document.getElementById('filter-salary-date-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const effectiveDate = document.getElementById('filter-salary-date').value;
+            fetch(`/salaries/date/${effectiveDate}`)
+                .then(response => response.json())
+                .then(data => displayFilteredSalaries(data))
+                .catch(error => console.error('Error fetching filtered salaries:', error));
+        });
+
+        document.getElementById('filter-project-department-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const departmentId = document.getElementById('filter-project-department').value;
+            fetch(`/projects/department/${departmentId}`)
+                .then(response => response.json())
+                .then(data => displayFilteredProjects(data))
+                .catch(error => console.error('Error fetching filtered projects:', error));
+        });
+
+        document.getElementById('filter-project-start-date-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const startDate = document.getElementById('filter-project-start-date').value;
+            fetch(`/projects/start_date/${startDate}`)
+                .then(response => response.json())
+                .then(data => displayFilteredProjects(data))
+                .catch(error => console.error('Error fetching filtered projects:', error));
+        });
+
+        document.getElementById('filter-employee-project-employee-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const employeeId = document.getElementById('filter-employee-project-employee').value;
+            fetch(`/employee-projects/employee/${employeeId}`)
+                .then(response => response.json())
+                .then(data => displayFilteredEmployeeProjects(data))
+                .catch(error => console.error('Error fetching filtered employee projects:', error));
+        });
+
+        document.getElementById('filter-employee-project-project-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const projectId = document.getElementById('filter-employee-project-project').value;
+            fetch(`/employee-projects/project/${projectId}`)
+                .then(response => response.json())
+                .then(data => displayFilteredEmployeeProjects(data))
+                .catch(error => console.error('Error fetching filtered employee projects:', error));
+        });
+
+        document.getElementById('filter-attendance-status-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const status = document.getElementById('filter-attendance-status').value;
+            fetch(`/attendance/status/${status}`)
+                .then(response => response.json())
+                .then(data => displayFilteredAttendance(data))
+                .catch(error => console.error('Error fetching filtered attendance:', error));
+        });
+
+        document.getElementById('filter-attendance-date-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const date = document.getElementById('filter-attendance-date').value;
+            fetch(`/attendance/date/${date}`)
+                .then(response => response.json())
+                .then(data => displayFilteredAttendance(data))
+                .catch(error => console.error('Error fetching filtered attendance:', error));
+        });
+
+        function displayFilteredEmployees(employees) {
+            displayFilteredData(employees, 'Filtered Employees');
+        }
+
+        function displayFilteredSalaries(salaries) {
+            displayFilteredData(salaries, 'Filtered Salaries');
+        }
+
+        function displayFilteredProjects(projects) {
+            displayFilteredData(projects, 'Filtered Projects');
+        }
+
+        function displayFilteredEmployeeProjects(employeeProjects) {
+            displayFilteredData(employeeProjects, 'Filtered Employee Projects');
+        }
+
+        function displayFilteredAttendance(attendance) {
+            displayFilteredData(attendance, 'Filtered Attendance');
+        }
+
+        function displayFilteredData(data, title) {
+            const tablesContainer = document.getElementById('tables-container');
+            tablesContainer.innerHTML = ''; 
+
+            const tableTitle = document.createElement('h3');
+            tableTitle.textContent = title;
+            tablesContainer.appendChild(tableTitle);
+
+            const tableElement = document.createElement('table');
+            const thead = document.createElement('thead');
+            const tbody = document.createElement('tbody');
+
+            if (data.length > 0) {
+                const headers = Object.keys(data[0]);
+                const headerRow = document.createElement('tr');
+                headers.forEach(header => {
+                    const th = document.createElement('th');
+                    th.textContent = header;
+                    headerRow.appendChild(th);
+                });
+                thead.appendChild(headerRow);
+            }
+
+            data.forEach(item => {
+                const rowElement = document.createElement('tr');
+                Object.values(item).forEach(value => {
+                    const td = document.createElement('td');
+                    td.textContent = value;
+                    rowElement.appendChild(td);
+                });
+                tbody.appendChild(rowElement);
+            });
+
+            tableElement.appendChild(thead);
+            tableElement.appendChild(tbody);
+            tablesContainer.appendChild(tableElement);
+        }
     </script>
 </body>
 </html>
