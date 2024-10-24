@@ -97,44 +97,44 @@ function initializeDatabase() {
         ('Ingénieur DevOps', '50000-70000'),
         ('Architecte Logiciel', '60000-80000')`);
 
-      db.run(`INSERT INTO Employees (employee_id, first_name, last_name, email, phone_number, hire_date, salary, department_id, position_id)
+      db.run(`INSERT INTO Employees (first_name, last_name, email, phone_number, hire_date, salary, department_id, position_id)
       VALUES 
-        (1, 'Alice', 'Dupont', 'alice.dupont@entreprise.com', '0600000001', '2022-05-10', 55000, 1, 1),
-        (2, 'Bob', 'Martin', 'bob.martin@entreprise.com', '0600000002', '2021-08-15', 60000, 1, 1),
-        (3, 'Claire', 'Durand', 'claire.durand@entreprise.com', '0600000003', '2020-03-20', 45000, 2, 2),
-        (4, 'David', 'Lemoine', 'david.lemoine@entreprise.com', '0600000004', '2019-12-05', 70000, 3, 3),
-        (5, 'Emma', 'Blanchard', 'emma.blanchard@entreprise.com', '0600000005', '2023-01-12', 48000, 1, 1),
-        (6, 'François', 'Girard', 'francois.girard@entreprise.com', '0600000006', '2023-01-15', 52000, 2, 2),
-        (7, 'Gérald', 'Roux', 'gerald.roux@entreprise.com', '0600000007', '2021-07-21', 63000, 3, 3),
-        (8, 'Hélène', 'Robert', 'helene.robert@entreprise.com', '0600000008', '2020-11-08', 45000, 1, 1),
-        (9, 'Isabelle', 'Moreau', 'isabelle.moreau@entreprise.com', '0600000009', '2019-09-14', 58000, 2, 2),
-        (10, 'Jean', 'Simon', 'jean.simon@entreprise.com', '0600000010', '2018-06-01', 62000, 3, 3)`);
+        ('Alice', 'Dupont', 'alice.dupont@entreprise.com', '0600000001', '2022-05-10', 55000, 1, 1),
+        ('Bob', 'Martin', 'bob.martin@entreprise.com', '0600000002', '2021-08-15', 60000, 1, 1),
+        ('Claire', 'Durand', 'claire.durand@entreprise.com', '0600000003', '2020-03-20', 45000, 2, 2),
+        ('David', 'Lemoine', 'david.lemoine@entreprise.com', '0600000004', '2019-12-05', 70000, 3, 3),
+        ('Emma', 'Blanchard', 'emma.blanchard@entreprise.com', '0600000005', '2023-01-12', 48000, 1, 1),
+        ('François', 'Girard', 'francois.girard@entreprise.com', '0600000006', '2023-01-15', 52000, 2, 2),
+        ('Gérald', 'Roux', 'gerald.roux@entreprise.com', '0600000007', '2021-07-21', 63000, 3, 3),
+        ('Hélène', 'Robert', 'helene.robert@entreprise.com', '0600000008', '2020-11-08', 45000, 1, 1),
+        ('Isabelle', 'Moreau', 'isabelle.moreau@entreprise.com', '0600000009', '2019-09-14', 58000, 2, 2),
+        ('Jean', 'Simon', 'jean.simon@entreprise.com', '0600000010', '2018-06-01', 62000, 3, 3)`);
 
-      db.run(`INSERT INTO Salaries (salary_id, employee_id, amount, effective_date)
+      db.run(`INSERT INTO Salaries (employee_id, amount, effective_date)
       VALUES 
-        (1, 1, 55000, '2022-05-10'),
-        (2, 2, 60000, '2021-08-15'),
-        (3, 3, 45000, '2020-03-20'),
-        (4, 4, 70000, '2019-12-05'),
-        (5, 5, 48000, '2023-01-12'),
-        (6, 6, 52000, '2023-01-15'),
-        (7, 7, 63000, '2021-07-21'),
-        (8, 8, 45000, '2020-11-08'),
-        (9, 9, 58000, '2019-09-14'),
-        (10, 10, 62000, '2018-06-01')`);
+        (1, 55000, '2022-05-10'),
+        (2, 60000, '2021-08-15'),
+        (3, 45000, '2020-03-20'),
+        (4, 70000, '2019-12-05'),
+        (5, 48000, '2023-01-12'),
+        (6, 52000, '2023-01-15'),
+        (7, 63000, '2021-07-21'),
+        (8, 45000, '2020-11-08'),
+        (9, 58000, '2019-09-14'),
+        (10, 62000, '2018-06-01')`);
 
-      db.run(`INSERT INTO Projects (project_id, project_name, start_date, end_date, department_id)
+      db.run(`INSERT INTO Projects (project_name, start_date, end_date, department_id)
       VALUES 
-        (1, 'Développement d un Site E-commerce', '2023-01-15', '2023-06-15', 1),
-        (2, 'Création d une Application Mobile', '2023-02-01', '2023-08-01', 1),
-        (3, 'Refonte du Site Web d Entreprise', '2023-04-10', '2023-10-20', 2),
-        (4, 'Campagne de Marketing Digital', '2023-03-05', '2023-05-30', 3),
-        (5, 'Mise en Place d un CRM', '2023-01-20', '2023-04-10', 6),
-        (6, 'Système de Gestion des Ressources Humaines', '2023-02-15', '2023-07-20', 6),
-        (7, 'Développement d un Système de Support Client', '2023-03-01', '2023-09-01', 4),
-        (8, 'Lancement d une Nouvelle Ligne de Produits', '2023-01-10', '2023-05-10', 5),
-        (9, 'Audit de Sécurité des Systèmes', '2023-04-15', '2023-05-30', 9),
-        (10, 'Développement d une Application de Gestion de Projets', '2023-01-05', '2023-03-15', 1)`);
+        ('Développement d un Site E-commerce', '2023-01-15', '2023-06-15', 1),
+        ('Création d une Application Mobile', '2023-02-01', '2023-08-01', 1),
+        ('Refonte du Site Web d Entreprise', '2023-04-10', '2023-10-20', 2),
+        ('Campagne de Marketing Digital', '2023-03-05', '2023-05-30', 3),
+        ('Mise en Place d un CRM', '2023-01-20', '2023-04-10', 6),
+        ('Système de Gestion des Ressources Humaines', '2023-02-15', '2023-07-20', 6),
+        ('Développement d un Système de Support Client', '2023-03-01', '2023-09-01', 4),
+        ('Lancement d une Nouvelle Ligne de Produits', '2023-01-10', '2023-05-10', 5),
+        ('Audit de Sécurité des Systèmes', '2023-04-15', '2023-05-30', 9),
+        ('Développement d une Application de Gestion de Projets', '2023-01-05', '2023-03-15', 1)`);
 
       db.run(`INSERT INTO Employee_Projects (employee_id, project_id, assignment_date)
       VALUES 
@@ -149,18 +149,18 @@ function initializeDatabase() {
         (9, 2, '2023-04-22'),
         (10, 3, '2023-06-09')`);
 
-      db.run(`INSERT INTO Attendance (attendance_id, employee_id, date, status)
+      db.run(`INSERT INTO Attendance (employee_id, date, status)
       VALUES 
-        (1, 1, '2023-10-01', 'present'),
-        (2, 2, '2023-10-01', 'absent'),
-        (3, 3, '2023-10-01', 'present'),
-        (4, 4, '2023-10-01', 'late'),
-        (5, 5, '2023-10-01', 'on_leave'),
-        (6, 6, '2023-10-01', 'present'),
-        (7, 7, '2023-10-01', 'late'),
-        (8, 8, '2023-10-01', 'present'),
-        (9, 9, '2023-10-01', 'absent'),
-        (10, 10, '2023-10-01', 'present')`);
+        (1, '2023-10-01', 'present'),
+        (2, '2023-10-01', 'absent'),
+        (3, '2023-10-01', 'present'),
+        (4, '2023-10-01', 'late'),
+        (5, '2023-10-01', 'on_leave'),
+        (6, '2023-10-01', 'present'),
+        (7, '2023-10-01', 'late'),
+        (8, '2023-10-01', 'present'),
+        (9, '2023-10-01', 'absent'),
+        (10, '2023-10-01', 'present')`);
 
       console.log("Données initiales insérées avec succès.");
       resolve();
