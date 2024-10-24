@@ -309,9 +309,26 @@ createDatabase()
 
     app.delete('/delete/:table/:id', (req, res) => {
       const { table, id } = req.params;
-      const idColumn = `${table.slice(0, -1)}_id`;
+      let query = '';
+      let params = [];
     
-      db.run(`DELETE FROM ${table} WHERE ${idColumn} = ?`, [id], function(err) {
+      if (table === 'employee-project') {
+        const [employeeId, projectId] = id.split('-');
+        query = `DELETE FROM Employee_Projects WHERE employee_id = ? AND project_id = ?`;
+        params = [employeeId, projectId];
+      } else if (table === 'attendance') {
+        query = `DELETE FROM Attendance WHERE attendance_id = ?`;
+        params = [id];
+      } else if (table === 'salaries') {
+        query = `DELETE FROM Salaries WHERE salary_id = ?`;
+        params = [id];
+      } else {
+        const idColumn = `${table.slice(0, -1)}_id`;
+        query = `DELETE FROM ${table} WHERE ${idColumn} = ?`;
+        params = [id];
+      }
+    
+      db.run(query, params, function(err) {
         if (err) {
           res.status(500).json({ error: err.message });
           return;
@@ -320,11 +337,10 @@ createDatabase()
       });
     });
     
-
     app.listen(PORT, () => {
       console.log(`Serveur en cours d'exécution sur http://localhost:${PORT}`);
     });
   })
   .catch(error => {
     console.error("Erreur lors de l'initialisation de la base de données:", error);
-  });
+});
