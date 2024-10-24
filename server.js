@@ -159,4 +159,4 @@ createDatabase()
   })
   .catch(error => {
     console.error("Erreur lors de l'initialisation de la base de données:", error);
-  });
+});
